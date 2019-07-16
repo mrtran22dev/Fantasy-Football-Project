@@ -1,0 +1,368 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>WF Fantasy League</title>
+
+    <link rel="stylesheet" type="text/css" href="fantasy_css/css_style.css" />
+     <style>@import url('https://fonts.googleapis.com/css?family=Jockey+One|Anton|Droid+Sans|Josefin+Sans|Roboto');</style> 
+</head>
+<body>
+
+    <div id="rulebox" class="rulebox-container">
+        <div class="rulebox-content">
+            <p style="text-align:center; font-size:30px; text-decoration:underline; margin-bottom: 10px;">RULES</p>                                    <!--&times; is multiplication sign-->
+            <p>1. Select RAIDERS Team tab</p>
+            <p>2. Select total of 5 players accordingly</p>
+            <p>3. Click the <span style="background:#16c60c; color:yellow;">PLAY!</span> button to earn points for players</p>
+            <p>4. Repeat steps 1-3 for the 49ers Team tab</p>
+            <p>5. Click the 'HISTORY' tab and <span style="background:#16c60c; color:yellow;">RETRIEVE</span> button to view points for players/teams</p>
+            <p>6. Check if your team <span style="color:#16c60c;">WON</span>/<span style="color:red;">LOST</span></p>
+            <p>7. Click <span style="background:red; color:yellow;">RESET</span> button in 'HISTORY' tab and repeat Step 1 to play again</p>
+
+            <a id="close" onclick="closeRule()">OK</a>
+        </div>
+    </div>
+
+    <!-- ----------------------------------------- BANNER AND NAVBAR ------------------------------------------ -->
+
+    <div id="container">
+        <!-- <div id="topRegion"> -->
+            <div id="banner"></div>
+            <div id="navbar">
+                <a href="index.html"><img src="fantasy_images/raidershome.jpg" alt="logo" height="50"/></a>
+                <a id="rules" class="main" onclick="ruleBox()">RULES</a>
+                <a id="standings" class="main" onclick="standings()">
+                    STANDINGS
+                    <div id="standings-dropdown" class="drop-content">
+                        <ul>
+                            <li>List</li>
+                            <li>Map</li>
+                        </ul>
+                    </div>
+                </a>
+            </div>
+        <!-- </div> -->
+
+
+        <!-- ---------------------------------------  CONTENT  -------------------------------------- -->
+        
+        <div id="content">
+         
+            <div id="tab-menu">
+                <ul>
+                    <li id="defaultOpen" class="tablink" onclick="tabSelect(event, 'team1')"><img src="fantasy_images/raiders_logo.jpg" style="height:25px;margin:auto;"/></li>
+                    <li class="tablink" onclick="tabSelect(event, 'team2')"><img src="fantasy_images/49ers_logo.png" style="height:25px;margin:auto;" /></li>
+                    <li class="tablink" onclick="tabSelect(event, 'history')">HISTORY</li>
+                </ul> 
+            </div>
+
+            <!-- ------------------------------------ TEAM 1 ------------------------------------ -->
+                        
+            <div id="team1" class="tab-content">
+                <h2>Raiders - Pick Players</h2>
+
+                <ul>
+                    <li>Quarterbacks<input id="qb1" type="checkbox" onclick="playerDisplay1()"/></li>
+                    <li>Running Backs<input id="rb1" type="checkbox" onclick="playerDisplay1()"/></li>
+                    <li>Receivers<input id="wr1" type="checkbox" onclick="playerDisplay1()"/></li>
+                    <li>All<input id="all-1" type="checkbox" onclick="playerDisplay1()"/></li>
+                </ul>
+
+                <table class="team1 qb1">
+                    <tr>
+                        <th>Position</th>
+                        <th>Players</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td class="position">QB</td>
+                        <td class="name">Quarterback 1</td>
+                        <td class="act"><input class="action" type="checkbox" /></td>                        
+                    </tr>
+                    <tr>
+                        <td class="position">QB</td>
+                        <td class="name">Quarterback 2</td>
+                        <td class="act"><input class="action" type="checkbox" /></td> 
+                    </tr>
+
+                    <tr>
+                        <td class="position">QB</td>
+                        <td class="name">Quarterback 3</td>
+                        <td class="act"><input class="action" type="checkbox" /></td>
+                    </tr>
+                </table>
+                <p> * Pick only ONE quarterback </p>
+                <table class="team1 rb1">
+                    <tr>
+                        <th>Position</th>
+                        <th>Players</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td class="position">RB</td>
+                        <td class="name">Runner 1</td>
+                        <td class="act"><input class="action" type="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td class="position">RB</td>
+                        <td class="name">Runner 2</td>
+                        <td class="act"><input class="action" type="checkbox"/></td>
+                    </tr>
+                    <tr>
+                        <td class="position">RB</td>
+                        <td class="name">Runner 3</td>
+                        <td class="act"><input class="action" type="checkbox"/></td>
+                    </tr>
+                </table>
+                <p> * Pick only TWO running backs </p>
+                <table class="team1 wr1">
+                    <tr>
+                        <th>Position</th>
+                        <th>Players</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td class="position">WR</td>
+                        <td class="name">Receiver 1</td>
+                        <td class="act"><input class="action" type="checkbox"/></td>
+                    </tr>
+                    <tr>
+                        <td class="position">WR</td>
+                        <td class="name">Receiver 2</td>
+                        <td class="act"><input class="action" type="checkbox"/></td>
+                    </tr>
+                    <tr>
+                        <td class="position">WR</td>
+                        <td class="name">Receiver 3</td>
+                        <td class="act"><input class="action" type="checkbox"/></td>
+                    </tr>
+                </table>
+                <p> * Pick only TWO wide receivers </p>
+
+                <input id="team1-submit" name="submit" onclick="storePlayers1()" type="submit" value="PLAY!" />
+                
+                <div id="concepts">
+                    <p><span style="font-size:20px; color:white; background-color:black; padding:10px;">Core concepts applied + features:</span></p>
+                        <div class='flex_container'>
+                            <div class=checkbox><img src="fantasy_images/checkmark.png" style="height:30px;" /></div>
+                            <div class=description>HTML/CSS/Javascript fundamentals</div>
+                        </div>
+                        <div class='flex_container'>
+                            <div class=checkbox><img src="fantasy_images/checkmark.png" style="height:30px;" /></div>
+                            <div class=description>DOM manipulation</div>
+                        </div>
+                        <div class='flex_container'>
+                            <div class=checkbox><img src="fantasy_images/checkmark.png" style="height:30px;" /></div>
+                            <div class=description>Local storage, session storage, data parsing</div>
+                        </div>
+                        <div class='flex_container'>
+                            <div class=checkbox><img src="fantasy_images/checkmark.png" style="height:30px;" /></div>
+                            <div class=description>Javascript for table creation, tab selection</div>
+                        </div>
+                        <div class='flex_container'>
+                            <div class=checkbox><img src="fantasy_images/checkmark.png" style="height:30px;" /></div>
+                            <div class=description>Javascript to filter players via QB/RB/WR/All checkboxes</div>
+                        </div>
+                        <div class='flex_container'>
+                            <div class=checkbox><img src="fantasy_images/checkmark.png" style="height:30px;" /></div>
+                            <div class=description>Javascript for modal box [click 'RULES']</div>
+                        </div>
+                        <div class='flex_container'>
+                            <div class=checkbox><img src="fantasy_images/checkmark.png" style="height:30px;" /></div>
+                            <div class=description>Random number generator to generate player/team score</div>
+                        </div>
+                    
+                </div>
+
+            </div>
+
+            <!-- ------------------------------------ TEAM 2 ------------------------------------ -->
+
+            <div id="team2" class="tab-content">
+                <h2>49ers - Pick Players</h2>
+
+                <ul>
+                    <li>Quarterbacks<input id="qb2" type="checkbox" onclick="playerDisplay2()" /></li>
+                    <li>Running Backs<input id="rb2" type="checkbox" onclick="playerDisplay2()" /></li>
+                    <li>Receivers<input id="wr2" type="checkbox" onclick="playerDisplay2()" /></li>
+                    <li>All<input id="all-2" type="checkbox" onclick="playerDisplay2()" /></li>
+                </ul>
+
+                <table class="team2 qb2">
+                    <tr>
+                        <th>Position</th>
+                        <th>Players</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td class="position">QB</td>
+                        <td class="name">Quarterback 1</td>
+                        <td class="act"><input class="action" type="checkbox"/></td>
+                    </tr>
+                    <tr>
+                        <td class="position">QB</td>
+                        <td class="name">Quarterback 2</td>
+                        <td class="act"><input class="action" type="checkbox"/></td>
+                    </tr>
+                    <tr>
+                        <td class="position">QB</td>
+                        <td class="name">Quarterback 3</td>
+                        <td class="act"><input class="action" type="checkbox"/></td>
+                    </tr>
+                </table>
+                <p> * Pick only ONE quarterback </p>
+
+                <table class="team2 rb2">
+                    <tr>
+                        <th>Position</th>
+                        <th>Players</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td class="position">RB</td>
+                        <td class="name">Runner 1</td>
+                        <td class="act"><input class="action" type="checkbox"/></td>
+                    </tr>
+                    <tr>
+                        <td class="position">RB</td>
+                        <td class="name">Runner 2</td>
+                        <td class="act"><input class="action" type="checkbox"/></td>
+                    </tr>
+                    <tr>
+                        <td class="position">RB</td>
+                        <td class="name">Runner 3</td>
+                        <td class="act"><input class="action" type="checkbox" /></td>
+                    </tr>
+                </table>
+                <p> * Pick only TWO running backs </p>
+
+                <table class="team2 wr2">
+                    <tr>
+                        <th>Position</th>
+                        <th>Players</th>
+                        <th>Action</th>
+                    </tr>
+                    <tr>
+                        <td class="position">WR</td>
+                        <td class="name">Receiver 1</td>
+                        <td class="act"><input class="action" type="checkbox"/></td>
+                    </tr>
+                    <tr>
+                        <td class="position">WR</td>
+                        <td class="name">Receiver 2</td>
+                        <td class="act"><input class="action" type="checkbox" /></td>
+                    </tr>
+                    <tr>
+                        <td class="position">WR</td>
+                        <td class="name">Receiver 3</td>
+                        <td class="act"><input class="action" type="checkbox"/></td>
+                    </tr>
+                </table>
+                <p> * Pick only TWO wide receivers </p>
+                <input id="team2-submit" name="submit" onclick="storePlayers2()" type="submit" value="PLAY!"/>
+            </div>
+
+
+                <!----------------------------------------- HISTORY -------------------------------------->
+
+                <div id="history" class="tab-content">
+                    <h2>History</h2>
+                    <input id="history-submit" name="submit" onclick="history()" type="submit" value="RETRIEVE" />
+                    &nbsp;
+                    &nbsp;
+                    &nbsp;
+                    <h3 style="text-align:center; text-decoration: underline;">RAIDERS</h3>
+                    <table class="history">
+                        <tbody id="team1-table">
+                            <tr>
+                                <th>Position</th>
+                                <th>Players</th>
+                                <th>Yards</th>
+                                <th>Touchdowns</th>
+                                <th>Int/Fum/Blk</th>
+                                <th>Points</th>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 style="text-align:center; text-decoration: underline;">49ers</h3>
+                    <table class="history">
+                        <tbody id="team2-table">
+                            <tr>
+                                <th>Position</th>
+                                <th>Players</th>
+                                <th>Yards</th>
+                                <th>Touchdowns</th>
+                                <th>Int/Fum/Blk</th>
+                                <th>Points</th>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <button name="clear-storage" onclick="clearStorage()">RESET</button>
+                </div>
+
+            </div>
+ 
+</div>
+
+    <!----------------------------------- JAVASCRIPT -------------------------------->
+
+    <script src="fantasy_js/ruleBox_closeRule.js"></script>
+    <script src="fantasy_js/tabSelect.js"></script>
+    <script src="fantasy_js/playerDisplay1.js"></script>
+    <script src="fantasy_js/playerDisplay2.js"></script>
+    <script src="fantasy_js/storePlayers1.js"></script>
+    <script src="fantasy_js/storePlayers2.js"></script>
+    <script src="fantasy_js/points.js"></script>
+    <script src="fantasy_js/history.js"></script>
+
+    <script>
+        function standings() {
+        document.getElementById("standings-dropdown").classList.toggle("show");
+        }
+    </script>
+
+    <script>
+        function clearStorage() {
+            localStorage.clear();
+            sessionStorage.clear();
+            sessionStorage.setItem("historyFlag", 0);
+
+            //var history = document.getElementsByClassName("history");
+            //var t1_td = history[0].getElementsByTagName("td");
+            var i;
+            var t1_table = document.getElementById("team1-table");                  // clears existing history table displayed
+            var t2_table = document.getElementById("team2-table");
+            var t1_tr = t1_table.getElementsByTagName("tr");
+            var t2_tr = t2_table.getElementsByTagName("tr");
+
+            for (i = 1; i < 7; i++) {
+                t1_table.removeChild(t1_tr[1]);
+            }
+
+            for (i = 1; i < 7; i++) {
+                t2_table.removeChild(t2_tr[1]);
+            }
+        }
+    </script>
+
+    <!--<script>
+        document.addEventListener("DOMContentLoaded", function (event) {                // syntax for element.addEventListener(event, function)
+            var e = document.getElementById("navbar");
+            if (e.scrollTop > 300) {
+                document.getElementById("navbar").style.position = "fixed";
+                    navbar.style.position = "fixed";
+                } else if (e.scrollTop < 300) {
+                    navbar.style.position = "none";
+                    document.getElementById("navbar").style.position = "none";
+                }
+        });
+        
+    </script>-->
+
+
+</body>
+</html>
